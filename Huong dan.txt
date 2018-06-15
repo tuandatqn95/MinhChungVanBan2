@@ -1,0 +1,6 @@
+Sua thong so ket noi database trong class DBConnect
+dia chi dang nhap admin : /admin
+tai khoan admin: tuandatqn95@gmail
+pass: 123456
+
+file import file database.sql vào mysql de chay
