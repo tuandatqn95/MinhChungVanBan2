@@ -11,8 +11,9 @@ public class DBConnect {
 		Connection conn = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/minhchungvanban?characterEncoding=UTF-8", "root", "");
+			String url = "jdbc:mysql://127.0.0.1/minhchungdb";
+			Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+			conn = DriverManager.getConnection (url, "rumitspkt", "123123");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

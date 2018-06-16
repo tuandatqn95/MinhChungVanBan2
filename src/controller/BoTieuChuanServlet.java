@@ -3,12 +3,15 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.ValidationException;
 
 import dao.BoTieuChuanDAO;
 
@@ -63,7 +66,17 @@ public class BoTieuChuanServlet extends HttpServlet {
 			String maBoTieuChuan = request.getParameter("MaBTC");
 			String tenBoTieuChuan = request.getParameter("TenBTC");
 			String moTa = request.getParameter("MoTa");
-			if (maBoTieuChuan != "" && tenBoTieuChuan != "") {
+			
+			String regex = "<>\"[\\s\\w-,]*";
+			String stringToValidate = maBoTieuChuan + tenBoTieuChuan + moTa;
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(stringToValidate);
+			if (!matcher.matches()) {
+				errors.add("Có lỗi xảy ra!");
+			}
+			
+			
+			if (errors.size() == 0 & maBoTieuChuan != "" && tenBoTieuChuan != "") {
 				try {
 					switch (request.getParameter("Func")) {
 					case "add":
@@ -93,5 +106,7 @@ public class BoTieuChuanServlet extends HttpServlet {
 			request.getRequestDispatcher("botieuchuan.jsp").forward(request, response);
 		}
 	}
+	
+	
 
 }
