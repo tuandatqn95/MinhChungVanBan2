@@ -4,3 +4,9 @@ tai khoan admin: tuandatqn95@gmail
 pass: 123456
 
 file import file database.sql vào mysql de chay
+
+
+<Connector SSLEnabled="true" clientAuth="false" 
+    keystoreFile="/home/rumitspkt/eclipse-workspace/SSL/minhchungcert.cert" 
+    keystorePass="123123" maxThreads="150" port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" 
+    scheme="https" secure="true" sslProtocol="TLS"/>

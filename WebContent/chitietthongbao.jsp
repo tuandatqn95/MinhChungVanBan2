@@ -15,14 +15,15 @@
 	ThongBao thongbao = null;
 	try {
 		thongbao = thongbao_dao.GetThongBaoByID(Integer.valueOf(request.getParameter("id")));
+		if (thongbao == null) {
+			errors.add("Không tìm thấy trang bạn yêu cầu!");
+		}
 	} catch (NumberFormatException e) {
 
 		errors.add("Không tìm thấy trang bạn yêu cầu!");
 
 	}
-	if (thongbao == null) {
-		errors.add("Không tìm thấy trang bạn yêu cầu!");
-	}
+	
 
 	if (errors.size() > 0) {
 		request.setAttribute("errors", errors);
@@ -37,7 +38,7 @@
 	</div>
 	<div class="panel-body">
 		<%
-			if (thongbao != null) {
+			if (errors.size() == 0) {
 		%>
 		<p class="media-heading" style="font-size: 17px">
 			<strong><%=thongbao.getTieuDe()%></strong>
